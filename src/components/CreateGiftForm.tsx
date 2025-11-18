@@ -8,10 +8,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Gift, Loader2, Copy, Check } from "lucide-react";
+import TemplateSelector from "./TemplateSelector";
+import EnhancedShare from "./EnhancedShare";
 
 const CreateGiftForm = () => {
   const [recipientName, setRecipientName] = useState("");
   const [senderName, setSenderName] = useState("");
+  const [senderEmail, setSenderEmail] = useState("");
   const [relation, setRelation] = useState("");
   const [message, setMessage] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -55,6 +58,7 @@ const CreateGiftForm = () => {
           slug,
           recipient_name: recipientName,
           sender_name: senderName || "Someone special",
+          sender_email: senderEmail || null,
           relation: relation || "Friend",
           message,
           image_url: imageUrl,
@@ -69,6 +73,7 @@ const CreateGiftForm = () => {
       // Reset form
       setRecipientName("");
       setSenderName("");
+      setSenderEmail("");
       setRelation("");
       setMessage("");
       setImageFile(null);
@@ -103,19 +108,125 @@ const CreateGiftForm = () => {
           <div className="p-4 bg-muted rounded-lg break-all text-center font-mono text-sm">
             {generatedLink}
           </div>
-          <div className="flex gap-3">
-            <Button onClick={copyLink} className="flex-1" variant="secondary">
+          <div className="flex gap-3 justify-center flex-wrap">
+            <Button onClick={copyLink} variant="secondary">
               {copied ? <Check className="w-4 h-4 mr-2" /> : <Copy className="w-4 h-4 mr-2" />}
               {copied ? "Copied!" : "Copy Link"}
             </Button>
-            <Button onClick={() => setGeneratedLink("")} className="flex-1">
-              Create Another
-            </Button>
+            <EnhancedShare
+              url={generatedLink}
+              title={`Christmas Gift for ${recipientName}`}
+              text={`Check out this special Christmas message I created for you!`}
+            />
+            <Button onClick={() => setGeneratedLink("")}>Create Another</Button>
           </div>
         </CardContent>
       </Card>
     );
   }
+
+  return (
+    <Card className="w-full max-w-2xl mx-auto shadow-xl">
+      <CardHeader className="text-center">
+        <CardTitle className="text-3xl">Create a Personalized Message</CardTitle>
+        <CardDescription>Fill in the details to create a special Christmas page</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="recipient">Recipient Name *</Label>
+            <Input
+              id="recipient"
+              placeholder="Who is this for?"
+              value={recipientName}
+              onChange={(e) => setRecipientName(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="sender">Your Name</Label>
+            <Input
+              id="sender"
+              placeholder="Your name (optional)"
+              value={senderName}
+              onChange={(e) => setSenderName(e.target.value)}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="email">Your Email (for notifications)</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="your.email@example.com (optional)"
+              value={senderEmail}
+              onChange={(e) => setSenderEmail(e.target.value)}
+            />
+            <p className="text-xs text-muted-foreground">
+              We'll notify you when someone likes your message
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="relation">Relation</Label>
+            <Select value={relation} onValueChange={setRelation}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select relation" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Mom">Mom</SelectItem>
+                <SelectItem value="Dad">Dad</SelectItem>
+                <SelectItem value="Uncle">Uncle</SelectItem>
+                <SelectItem value="Aunt">Aunt</SelectItem>
+                <SelectItem value="Friend">Friend</SelectItem>
+                <SelectItem value="Partner">Partner</SelectItem>
+                <SelectItem value="Sibling">Sibling</SelectItem>
+                <SelectItem value="Other">Other</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="message">Your Message *</Label>
+            <Textarea
+              id="message"
+              placeholder="Write your heartfelt Christmas message..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              required
+              rows={6}
+            />
+          </div>
+
+          <TemplateSelector
+            onSelect={setMessage}
+            recipientName={recipientName}
+            senderName={senderName}
+          />
+
+          <div className="space-y-2">
+            <Label htmlFor="image">Image (optional)</Label>
+            <Input
+              id="image"
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+            />
+          </div>
+
+          <Button type="submit" className="w-full" size="lg" disabled={loading}>
+            {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+            Create Gift Page
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default CreateGiftForm;
+
 
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-xl">
