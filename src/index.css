@@ -8,89 +8,93 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    /* Christmas Pre-Dec 25 Theme - Soft & Elegant */
+    --background: 48 100% 97%;
+    --foreground: 140 80% 15%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 140 80% 15%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    --popover-foreground: 140 80% 15%;
+    
+    /* Soft Pine Green */
+    --primary: 140 60% 35%;
+    --primary-foreground: 48 100% 97%;
+    
+    /* Cranberry Red */
+    --secondary: 0 60% 50%;
+    --secondary-foreground: 48 100% 97%;
+    
+    --muted: 48 50% 92%;
+    --muted-foreground: 140 40% 40%;
+    
+    /* Gold Accent */
+    --accent: 45 100% 50%;
+    --accent-foreground: 140 80% 15%;
+    
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive-foreground: 48 100% 97%;
+    
+    --border: 48 30% 88%;
+    --input: 48 30% 88%;
+    --ring: 45 100% 50%;
+    
+    --radius: 0.75rem;
+    
+    /* Gradients */
+    --gradient-festive: linear-gradient(135deg, hsl(140 60% 35%), hsl(0 60% 50%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 100% 50%), hsl(38 100% 60%));
+    --gradient-snow: linear-gradient(180deg, transparent, hsla(48, 100%, 97%, 0.9));
+    
+    /* Shadows */
+    --shadow-soft: 0 10px 30px -10px hsla(140, 60%, 35%, 0.2);
+    --shadow-glow: 0 0 40px hsla(45, 100%, 50%, 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  /* Christmas Day Theme (Dec 25+) - Rich & Vibrant */
+  .theme-christmas {
+    --background: 0 0% 7%;
+    --foreground: 45 100% 95%;
+    
+    --card: 0 0% 12%;
+    --card-foreground: 45 100% 95%;
+    
+    --popover: 0 0% 12%;
+    --popover-foreground: 45 100% 95%;
+    
+    /* Rich Emerald */
+    --primary: 140 80% 25%;
+    --primary-foreground: 45 100% 95%;
+    
+    /* Bright Red */
+    --secondary: 0 90% 55%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 0 0% 18%;
+    --muted-foreground: 45 50% 70%;
+    
+    /* Sparkling Gold */
+    --accent: 45 100% 60%;
+    --accent-foreground: 0 0% 7%;
+    
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 45 100% 60%;
+    
+    --gradient-festive: linear-gradient(135deg, hsl(140 80% 25%), hsl(0 90% 55%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 100% 60%), hsl(38 100% 70%));
+    --shadow-glow: 0 0 60px hsla(45, 100%, 60%, 0.5);
+  }
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  /* New Year Theme (Jan 1) - Celebratory */
+  .theme-newyear {
+    --accent: 180 100% 50%;
+    --gradient-festive: linear-gradient(135deg, hsl(180 100% 50%), hsl(300 100% 50%), hsl(45 100% 50%));
+    --shadow-glow: 0 0 80px hsla(180, 100%, 50%, 0.6);
   }
 }
 
@@ -100,6 +104,125 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-500;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+/* Snowfall Animation */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(100px);
+    opacity: 0;
+  }
+}
+
+@keyframes snowfall-left {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(-100px);
+    opacity: 0;
+  }
+}
+
+.snowflake {
+  position: fixed;
+  top: -10vh;
+  color: white;
+  font-size: 1em;
+  animation: snowfall linear infinite;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Twinkling Lights */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.4;
+    filter: brightness(1.5);
+  }
+}
+
+.twinkle {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+/* Confetti Animation */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: -10vh;
+  animation: confetti-fall 3s linear infinite;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Fade In Animation */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out;
+}
+
+/* Pulse Glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsla(var(--accent), 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsla(var(--accent), 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }

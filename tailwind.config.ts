@@ -57,6 +57,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        festive: {
+          pine: "hsl(140 60% 35%)",
+          cranberry: "hsl(0 60% 50%)",
+          gold: "hsl(45 100% 50%)",
+          ivory: "hsl(48 100% 97%)",
+          emerald: "hsl(140 80% 25%)",
+          brightred: "hsl(0 90% 55%)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
