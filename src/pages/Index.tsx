@@ -100,17 +100,17 @@ const Index = () => {
                 {
                   icon: Gift,
                   title: "Fill the Form",
-                  description: "Enter the recipient's name, your message, and upload an optional image",
+                  description: "Enter the recipient's name, your message, and upload an optional image. Use templates for inspiration!",
                 },
                 {
                   icon: Sparkles,
                   title: "Generate Link",
-                  description: "Get a unique, personalized page with festive design and your message",
+                  description: "Get a unique, personalized page with festive design, your message, and view tracking",
                 },
                 {
-                  icon: Share2,
+                  icon: Heart,
                   title: "Share the Love",
-                  description: "Share via WhatsApp, email, or social media and spread the joy",
+                  description: "Share via WhatsApp, Facebook, email or copy the link. Get notified when they like it!",
                 },
               ].map((step, index) => (
                 <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow animate-fade-in-up">
@@ -160,10 +160,21 @@ const Index = () => {
                 <Heart className="w-16 h-16 text-secondary" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold mb-3">Memories That Sparkle</h3>
+                <h3 className="text-2xl font-bold mb-3">Smart Templates</h3>
                 <p className="text-muted-foreground">
-                  Animated snow, twinkling lights, and festive design that changes dynamically based
-                  on the date.
+                  Choose from beautiful pre-written messages for family, friends, and loved ones. Customize them to make them your own.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-6 animate-fade-in-up">
+              <div className="flex-shrink-0">
+                <BarChart3 className="w-16 h-16 text-accent twinkle" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-3">Track Engagement</h3>
+                <p className="text-muted-foreground">
+                  See how many people viewed and liked your messages. Get email notifications when recipients interact with your gifts.
                 </p>
               </div>
             </div>
@@ -183,13 +194,12 @@ const Index = () => {
 
             <div className="flex gap-6 animate-fade-in-up">
               <div className="flex-shrink-0">
-                <Share2 className="w-16 h-16 text-primary" />
+                <Heart className="w-16 h-16 text-secondary" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold mb-3">Easy to Share</h3>
+                <h3 className="text-2xl font-bold mb-3">Easy Social Sharing</h3>
                 <p className="text-muted-foreground">
-                  Recipients can like your message, share it with others, and send you a thank you
-                  acknowledgment.
+                  One-click sharing to WhatsApp, Facebook, Twitter, or email. Recipients can like and share with others too!
                 </p>
               </div>
             </div>

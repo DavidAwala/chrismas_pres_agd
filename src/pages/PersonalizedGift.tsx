@@ -3,20 +3,23 @@ import { useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Share2, Loader2 } from "lucide-react";
+import { Heart, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import SnowAnimation from "@/components/SnowAnimation";
 import ConfettiAnimation from "@/components/ConfettiAnimation";
+import EnhancedShare from "@/components/EnhancedShare";
 import ornamentImage from "@/assets/ornament.jpg";
 
 interface GiftMessage {
   recipient_name: string;
   sender_name: string;
+  sender_email: string;
   relation: string;
   message: string;
   image_url: string;
   likes_count: number;
   id: string;
+  slug: string;
 }
 
 const PersonalizedGift = () => {
@@ -58,6 +61,11 @@ const PersonalizedGift = () => {
 
         if (error) throw error;
         setGift(data);
+
+        // Increment view count
+        if (data) {
+          await supabase.rpc("increment_gift_views", { gift_id: data.id });
+        }
       } catch (error) {
         console.error("Error fetching gift:", error);
         toast.error("Gift page not found");
@@ -83,21 +91,25 @@ const PersonalizedGift = () => {
       setLiked(true);
       setGift({ ...gift, likes_count: (gift.likes_count || 0) + 1 });
       toast.success("Thank you for liking! ❤️");
+
+      // Send email notification if sender provided email
+      if (gift.sender_email) {
+        try {
+          await supabase.functions.invoke("send-like-notification", {
+            body: {
+              recipientName: gift.recipient_name,
+              senderName: gift.sender_name,
+              senderEmail: gift.sender_email,
+              giftUrl: window.location.href,
+            },
+          });
+        } catch (emailError) {
+          console.error("Error sending email notification:", emailError);
+          // Don't show error to user as like was successful
+        }
+      }
     } catch (error) {
       console.error("Error liking gift:", error);
-    }
-  };
-
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: `Christmas Gift from ${gift?.sender_name}`,
-        text: `Check out this personalized Christmas message!`,
-        url: window.location.href,
-      });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      toast.success("Link copied to clipboard!");
     }
   };
 
@@ -179,7 +191,7 @@ const PersonalizedGift = () => {
           </Card>
 
           {/* Actions */}
-          <div className="mt-8 flex gap-4 justify-center animate-fade-in-up">
+          <div className="mt-8 flex gap-4 justify-center animate-fade-in-up flex-wrap">
             <Button
               onClick={handleLike}
               disabled={liked}
@@ -190,10 +202,11 @@ const PersonalizedGift = () => {
               <Heart className={`w-5 h-5 ${liked ? "fill-current" : ""}`} />
               {liked ? "Liked" : "Like This"} ({gift.likes_count || 0})
             </Button>
-            <Button onClick={handleShare} size="lg" variant="outline" className="gap-2">
-              <Share2 className="w-5 h-5" />
-              Share
-            </Button>
+            <EnhancedShare
+              url={window.location.href}
+              title={`Christmas Gift from ${gift.sender_name}`}
+              text={`Check out this special Christmas message for ${gift.recipient_name}!`}
+            />
           </div>
         </div>
       </div>
@@ -202,3 +215,4 @@ const PersonalizedGift = () => {
 };
 
 export default PersonalizedGift;
+

@@ -23,9 +23,11 @@ export type Database = {
           message: string
           recipient_name: string
           relation: string | null
+          sender_email: string | null
           sender_name: string | null
           slug: string
           updated_at: string | null
+          views_count: number | null
         }
         Insert: {
           created_at?: string | null
@@ -35,9 +37,11 @@ export type Database = {
           message: string
           recipient_name: string
           relation?: string | null
+          sender_email?: string | null
           sender_name?: string | null
           slug: string
           updated_at?: string | null
+          views_count?: number | null
         }
         Update: {
           created_at?: string | null
@@ -47,9 +51,38 @@ export type Database = {
           message?: string
           recipient_name?: string
           relation?: string | null
+          sender_email?: string | null
           sender_name?: string | null
           slug?: string
           updated_at?: string | null
+          views_count?: number | null
+        }
+        Relationships: []
+      }
+      gift_templates: {
+        Row: {
+          category: string
+          created_at: string | null
+          id: string
+          image_url: string | null
+          message_template: string
+          title: string
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          id?: string
+          image_url?: string | null
+          message_template: string
+          title: string
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          id?: string
+          image_url?: string | null
+          message_template?: string
+          title?: string
         }
         Relationships: []
       }
@@ -58,7 +91,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_gift_views: { Args: { gift_id: string }; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
