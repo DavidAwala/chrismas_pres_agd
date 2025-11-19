@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Gift, Heart, Sparkles, Share2 } from "lucide-react";
+import { Gift, Heart, Sparkles, Share2,BarChart3} from "lucide-react";
 import CountdownTimer from "@/components/CountdownTimer";
 import CreateGiftForm from "@/components/CreateGiftForm";
 import SnowAnimation from "@/components/SnowAnimation";
@@ -194,7 +194,7 @@ const Index = () => {
 
             <div className="flex gap-6 animate-fade-in-up">
               <div className="flex-shrink-0">
-                <Heart className="w-16 h-16 text-secondary" />
+                <Share2 className="w-16 h-16 text-secondary" />
               </div>
               <div>
                 <h3 className="text-2xl font-bold mb-3">Easy Social Sharing</h3>
