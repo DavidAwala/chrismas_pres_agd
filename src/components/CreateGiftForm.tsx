@@ -191,7 +191,7 @@ const CreateGiftForm = () => {
             <Label htmlFor="message">Your Message *</Label>
             <Textarea
               id="message"
-              placeholder="Write your heartfelt Christmas message..."
+              placeholder="Write your heartfelt Christmas message... and if using template remeber to remove your name if your name was not added, when using the templates"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
