@@ -314,7 +314,7 @@ const PersonalizedGift = () => {
               {liked ? "Liked" : "Send Love"} ({gift.likes_count || 0})
             </Button>
             
-            <div className="bg-white rounded-full p-1">
+            <div className="rounded-full p-1">
               <EnhancedShare
                 url={window.location.href}
                 title={`Christmas Gift from ${gift.sender_name}`}
